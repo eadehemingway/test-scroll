@@ -1,10 +1,12 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 
 import "intersection-observer"
 import scrollama from "scrollama" // or...
 
 const One = () => {
+  const [isActiveIndex, setIsActiveIndex] = useState()
+  console.log("isActiveIndex:", isActiveIndex)
   useEffect(() => {
     const scroller = scrollama()
 
@@ -15,20 +17,37 @@ const One = () => {
         offset: 0.2, // where the dotted line shows up
         // progress: true,
       })
-      .onStepEnter(a => console.log("enterrrrrrrrrrrr", a))
-      .onStepExit(b => console.log("exxxxxxxxxxxit", b))
+      .onStepEnter(res => {
+        console.log("enterrrrrrrrrrr")
+        setIsActiveIndex(res.index)
+      })
+      .onStepExit(res => {
+        console.log("exxxxxxxxxit")
+        setIsActiveIndex(undefined)
+      })
   }, [])
 
+  const steps = ["a", "b", "c"]
   return (
-    <>
-      <Box className="step" data-step="a" style={{ marginTop: 200 }}></Box>
-      <Box className="step" data-step="b"></Box>
-      <Box className="step" data-step="c"></Box>
+    <Container>
+      {steps.map((s, i) => {
+        const isActive = i === isActiveIndex
+        const background = isActive ? "pink" : "red"
+        return (
+          <Box className="step" style={{ background }} key={i}>
+            {s}
+          </Box>
+        )
+      })}
+
       <Outro />
-    </>
+    </Container>
   )
 }
 
+const Container = styled.div`
+  position: relative;
+`
 const Outro = styled.div`
   height: 1000px;
 `
@@ -37,7 +56,8 @@ const Box = styled.div`
   height: 300px;
   width: 300px;
   background: red;
-  margin: 100px;
+  margin: 200px;
+  margin-bottom: 0;
 `
 
 export default One
