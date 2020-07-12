@@ -6,7 +6,7 @@ import scrollama from "scrollama" // or...
 
 const One = () => {
   const [isActiveIndex, setIsActiveIndex] = useState()
-  console.log("isActiveIndex:", isActiveIndex)
+
   useEffect(() => {
     const scroller = scrollama()
 
