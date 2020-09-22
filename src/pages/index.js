@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-
+import { Link } from "gatsby"
 import scrollama from "scrollama" // or...
 import "intersection-observer"
+import Nav from "../components/Nav"
 
 const IndexPage = () => {
   const [isActiveIndex, setIsActiveIndex] = useState()
@@ -30,6 +31,7 @@ const IndexPage = () => {
 
   return (
     <Scroll id="scroll">
+      <Nav />
       <Container>
         {steps.map((s, i) => {
           const isActive = i === isActiveIndex
@@ -63,5 +65,9 @@ const Box = styled.div`
   background: red;
   margin: 200px;
   margin-bottom: 0;
+`
+const Tab = styled(Link)`
+  padding: 30px;
+  border: 2px solid pink;
 `
 export default IndexPage

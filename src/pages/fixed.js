@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 
 import "intersection-observer"
-import "intersection-observer"
 import scrollama from "scrollama" // or...
+import Nav from "../components/Nav"
 
 const Fixed = () => {
   const [isActiveIndex, setIsActiveIndex] = useState()

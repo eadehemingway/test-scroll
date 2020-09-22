@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import * as d3 from "d3"
 import "intersection-observer"
-import "intersection-observer"
 import scrollama from "scrollama" // or...
+import Nav from "../components/Nav"
 
 const Fixed = () => {
   const [isActiveIndex, setIsActiveIndex] = useState()
@@ -12,6 +12,7 @@ const Fixed = () => {
     drawCircles()
     setUpScroll()
   }, [])
+
   function drawCircles() {
     console.log("hhhhhhhhhhhhhhhh")
     const data = ["one", "two", "three"]
@@ -38,11 +39,15 @@ const Fixed = () => {
       })
       .onStepEnter(res => {
         console.log("res:", res.element)
-        d3.select(`.circle-${res.index}`).attr("fill", "lightsteelblue")
+        d3.select(`.circle-${res.index}`)
+          .attr("fill", "lightsteelblue")
+          .attr("transform", "translate(50,0)")
         setIsActiveIndex(res.index)
       })
       .onStepExit(res => {
-        d3.select(`.circle-${res.index}`).attr("fill", "coral")
+        d3.select(`.circle-${res.index}`)
+          .attr("fill", "coral")
+          .attr("transform", "translate(-50,0)")
 
         setIsActiveIndex(undefined)
       })

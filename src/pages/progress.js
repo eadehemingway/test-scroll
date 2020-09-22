@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-
+import Nav from "../components/Nav"
 import scrollama from "scrollama" // or...
 import "intersection-observer"
 import * as d3 from "d3"
+
 const IndexPage = () => {
   const [isActiveIndex, setIsActiveIndex] = useState()
 
